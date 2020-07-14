@@ -67,6 +67,11 @@ function SubmitEmail({ onSubmitEmail, initialEmail }) {
   const onSubmitForm = useCallback(
     e => {
       e.preventDefault();
+      if (email.split('@')[1] !== 'hva.nl')
+      {
+          window.alert('Please login with your hva mail');
+          return;
+      }
       onSubmitEmail(email);
     },
     [onSubmitEmail, email]
