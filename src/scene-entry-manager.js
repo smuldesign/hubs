@@ -449,8 +449,8 @@ export default class SceneEntryManager {
       shareVideoMediaStream({
         video: {
           mediaSource: "camera",
-          width: isIOS ? { max: 1280 } : { max: 1280, ideal: 720 },
-          frameRate: 30
+          width: isIOS ? { max: 640 } : { max: 640, ideal: 360 },
+          frameRate: 15
         }
         //TODO: Capture audio from camera?
       });

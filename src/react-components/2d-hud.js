@@ -146,8 +146,7 @@ class TopHUD extends Component {
     const isMobile = AFRAME.utils.device.isMobile() || AFRAME.utils.device.isMobileVR();
 
     const videoShareExtraOptionTypes = [];
-    const primaryVideoShareType =
-      this.props.videoShareMediaSource || this.state.lastActiveMediaSource || (isMobile ? "camera" : "screen");
+    const primaryVideoShareType = "camera" || this.state.lastActiveMediaSource || (isMobile ? "camera" : "screen");
 
     if (this.state.showVideoShareOptions) {
       videoShareExtraOptionTypes.push(primaryVideoShareType);
@@ -332,15 +331,15 @@ class TopHUD extends Component {
             </div>
             {/*Start cm3d*/}
             <div
-                className={cx(styles.iconButton, {
-                  [styles.disabled]: this.state.cameraDisabled
-                })}
-                title={`Spatial Audio${this.state.onAudioMode ? " Disabled" : ""}`}
-                onClick={this.props.onSpatialAudio}
+              className={cx(styles.iconButton, {
+                [styles.disabled]: this.state.cameraDisabled
+              })}
+              title={`Spatial Audio${this.state.onAudioMode ? " Disabled" : ""}`}
+              onClick={this.props.onSpatialAudio}
             >
               <InlineSVG
-                  className={cx(styles.iconButtonIcon)}
-                  src={this.state.onAudioMode ? SpatialIcon : SpatialIconActive}
+                className={cx(styles.iconButtonIcon)}
+                src={this.state.onAudioMode ? SpatialIcon : SpatialIconActive}
               />
             </div>
             {/*End cm3d*/}
