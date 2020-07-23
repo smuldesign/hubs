@@ -246,8 +246,8 @@ export default class SceneEntryManager {
 
   _signInAndPinOrUnpinElement = (el, pin) => {
     const action = pin
-        ? () => this._pinElement(el)
-        : async () => {
+      ? () => this._pinElement(el)
+      : async () => {
           await this._unpinElement(el);
         };
 
@@ -280,12 +280,12 @@ export default class SceneEntryManager {
     const spawnMediaInfrontOfPlayer = (src, contentOrigin) => {
       if (!this.hubChannel.can("spawn_and_move_media")) return;
       const { entity, orientation } = addMedia(
-          src,
-          "#interactable-media",
-          contentOrigin,
-          null,
-          !(src instanceof MediaStream),
-          true
+        src,
+        "#interactable-media",
+        contentOrigin,
+        null,
+        !(src instanceof MediaStream),
+        true
       );
       orientation.then(or => {
         entity.setAttribute("offset-relative-to", {
@@ -332,17 +332,17 @@ export default class SceneEntryManager {
 
     this.scene.addEventListener("action_kick_client", ({ detail: { clientId } }) => {
       this.performConditionalSignIn(
-          () => this.hubChannel.can("kick_users"),
-          async () => await window.APP.hubChannel.kick(clientId),
-          "kick-user"
+        () => this.hubChannel.can("kick_users"),
+        async () => await window.APP.hubChannel.kick(clientId),
+        "kick-user"
       );
     });
 
     this.scene.addEventListener("action_mute_client", ({ detail: { clientId } }) => {
       this.performConditionalSignIn(
-          () => this.hubChannel.can("mute_users"),
-          () => window.APP.hubChannel.mute(clientId),
-          "mute-user"
+        () => this.hubChannel.can("mute_users"),
+        () => window.APP.hubChannel.mute(clientId),
+        "mute-user"
       );
     });
 
@@ -350,8 +350,8 @@ export default class SceneEntryManager {
 
     document.addEventListener("paste", e => {
       if (
-          (e.target.matches("input, textarea") || e.target.contentEditable === "true") &&
-          document.activeElement === e.target
+        (e.target.matches("input, textarea") || e.target.contentEditable === "true") &&
+        document.activeElement === e.target
       )
         return;
 
@@ -439,7 +439,10 @@ export default class SceneEntryManager {
       this.scene.emit("share_video_enabled", { source: isDisplayMedia ? "screen" : "camera" });
       this.scene.addState("sharing_video");
       isHandlingVideoShare = false;
-      attachCamera1.attach();
+      // Only attach the camera element
+      if (!isDisplayMedia) {
+        attachCamera1.attach();
+      }
     };
 
     this.scene.addEventListener("action_share_camera", () => {
@@ -455,21 +458,21 @@ export default class SceneEntryManager {
 
     this.scene.addEventListener("action_share_screen", () => {
       shareVideoMediaStream(
-          {
-            video: {
-              // Work around BMO 1449832 by calculating the width. This will break for multi monitors if you share anything
-              // other than your current monitor that has a different aspect ratio.
-              width: 720 * (screen.width / screen.height),
-              height: 720,
-              frameRate: 30
-            },
-            audio: {
-              echoCancellation: window.APP.store.state.preferences.disableEchoCancellation === true ? false : true,
-              noiseSuppression: window.APP.store.state.preferences.disableNoiseSuppression === true ? false : true,
-              autoGainControl: window.APP.store.state.preferences.disableAutoGainControl === true ? false : true
-            }
+        {
+          video: {
+            // Work around BMO 1449832 by calculating the width. This will break for multi monitors if you share anything
+            // other than your current monitor that has a different aspect ratio.
+            width: 720 * (screen.width / screen.height),
+            height: 720,
+            frameRate: 30
           },
-          true
+          audio: {
+            echoCancellation: window.APP.store.state.preferences.disableEchoCancellation === true ? false : true,
+            noiseSuppression: window.APP.store.state.preferences.disableNoiseSuppression === true ? false : true,
+            autoGainControl: window.APP.store.state.preferences.disableAutoGainControl === true ? false : true
+          }
+        },
+        true
       );
     });
 
@@ -525,12 +528,11 @@ export default class SceneEntryManager {
   // Toggle spatialAudio on or off
   _setupSpatialAudio = () => {
     this.scene.addEventListener("action_toggle_spatialAudio", () => {
-          const shouldEnablePositionalAudio = window.APP.store.state.preferences.audioOutputMode === "audio";
-          window.APP.store.update({
-            preferences: { audioOutputMode: shouldEnablePositionalAudio ? "panner" : "audio" }
-          });
-        }
-    )
+      const shouldEnablePositionalAudio = window.APP.store.state.preferences.audioOutputMode === "audio";
+      window.APP.store.update({
+        preferences: { audioOutputMode: shouldEnablePositionalAudio ? "panner" : "audio" }
+      });
+    });
   };
   // End cm3d
   _setupCamera = () => {
@@ -597,23 +599,23 @@ export default class SceneEntryManager {
     const rightController = document.querySelector("#player-right-controller");
     const getRecording = () => {
       fetch(URL.createObjectURL(dataInput.files[0]))
-          .then(resp => resp.json())
-          .then(recording => {
-            camera.setAttribute("replay", "");
-            camera.components["replay"].poses = recording.camera.poses;
+        .then(resp => resp.json())
+        .then(recording => {
+          camera.setAttribute("replay", "");
+          camera.components["replay"].poses = recording.camera.poses;
 
-            leftController.setAttribute("replay", "");
-            leftController.components["replay"].poses = recording.left.poses;
-            leftController.removeAttribute("visibility-by-path");
-            leftController.removeAttribute("track-pose");
-            leftController.setAttribute("visible", true);
+          leftController.setAttribute("replay", "");
+          leftController.components["replay"].poses = recording.left.poses;
+          leftController.removeAttribute("visibility-by-path");
+          leftController.removeAttribute("track-pose");
+          leftController.setAttribute("visible", true);
 
-            rightController.setAttribute("replay", "");
-            rightController.components["replay"].poses = recording.right.poses;
-            rightController.removeAttribute("visibility-by-path");
-            rightController.removeAttribute("track-pose");
-            rightController.setAttribute("visible", true);
-          });
+          rightController.setAttribute("replay", "");
+          rightController.components["replay"].poses = recording.right.poses;
+          rightController.removeAttribute("visibility-by-path");
+          rightController.removeAttribute("track-pose");
+          rightController.setAttribute("visible", true);
+        });
     };
 
     if (dataInput.files && dataInput.files.length > 0) {
@@ -624,11 +626,11 @@ export default class SceneEntryManager {
 
     await new Promise(resolve => audioEl.addEventListener("canplay", resolve));
     mediaStream.addTrack(
-        audioEl.captureStream
-            ? audioEl.captureStream().getAudioTracks()[0]
-            : audioEl.mozCaptureStream
-            ? audioEl.mozCaptureStream().getAudioTracks()[0]
-            : null
+      audioEl.captureStream
+        ? audioEl.captureStream().getAudioTracks()[0]
+        : audioEl.mozCaptureStream
+          ? audioEl.mozCaptureStream().getAudioTracks()[0]
+          : null
     );
     await NAF.connection.adapter.setLocalMediaStream(mediaStream);
     audioEl.play();

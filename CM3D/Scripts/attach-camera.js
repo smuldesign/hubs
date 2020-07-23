@@ -24,7 +24,6 @@ class attachCamera {
     // Attach your camera to your avatar
     function attachObjToAvatar(obj, avatar) {
       NAF.utils.getNetworkedEntity(obj).then(networkedEl => {
-        console.log("I AM RUNNING");
         avatar.querySelectorAll("#avatar-head")[0].object3D.getWorldPosition(headEl.position);
         networkedEl.object3D.position.copy(headEl.position);
         networkedEl.object3D.position.y += 0.05;
