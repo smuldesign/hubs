@@ -65,3 +65,11 @@ dist/
 certs/
 results/
 .ret.credentials
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/jsLibraryMappings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/encodings.xml
+.idea/CM3D.iml
