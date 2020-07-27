@@ -8,7 +8,8 @@ const STORE_STATE_CACHE_KEY = Symbol();
 const OAUTH_FLOW_CREDENTIALS_KEY = "ret-oauth-flow-account-credentials";
 const validator = new Validator();
 import { EventTarget } from "event-target-shim";
-import { fetchRandomDefaultAvatarId, generateRandomName, generateEmailName } from "../utils/identity.js";
+import { fetchRandomDefaultAvatarId, generateRandomName } from "../utils/identity.js";
+import { generateEmailName } from "../../CM3D/Scripts/parse-email";
 
 // Durable (via local-storage) schema-enforced state that is meant to be consumed via forward data flow.
 // (Think flux but with way less incidental complexity, at least for now :))

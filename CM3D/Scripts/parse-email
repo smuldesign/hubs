@@ -1,0 +1,6 @@
+// Start cm3d
+export function generateEmailName(email) {
+  let playerName = email.split("@")[0];
+  playerName = playerName.replace(".", " ");
+  return playerName;
+}
