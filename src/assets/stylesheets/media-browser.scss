@@ -423,11 +423,15 @@
           position: absolute;
           top: 165px;
           right: 7px;
-          background: var(--tile-button-background-color);
           height: 30px;
           border-radius: 30px;
           line-height: 30px;
           padding: 0 10px;
+
+          //CM3D
+          //background: var(--tile-button-background-color);
+          background: $action-color;
+
 
           span {
             margin-left: 5px;
@@ -565,4 +569,6 @@
   padding-top: 20px;
   margin-bottom: 52px;
   overflow: hidden;
+  //CM3D
+  border-radius: 1em;
 }

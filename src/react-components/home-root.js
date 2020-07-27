@@ -14,7 +14,6 @@ import homeVideoMp4 from "../assets/video/home.mp4";
 import discordLogoSmall from "../assets/images/discord-logo-small.png";
 import classNames from "classnames";
 import { isLocalClient, createAndRedirectToNewHub, connectToReticulum } from "../utils/phoenix-utils";
-import maskEmail from "../utils/mask-email";
 import checkIsMobile from "../utils/is-mobile";
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { faCog } from "@fortawesome/free-solid-svg-icons/faCog";
@@ -27,6 +26,11 @@ import styles from "../assets/stylesheets/index.scss";
 import AuthDialog from "./auth-dialog.js";
 import SignInDialog from "./sign-in-dialog.js";
 import MediaTiles from "./media-tiles";
+
+//Start CM3D
+//import maskEmail from "../utils/mask-email";
+import { generateEmailName } from "../../CM3D/Scripts/parse-email.js";
+//End CM3D
 
 addLocaleData([...en]);
 
@@ -226,7 +230,7 @@ class HomeRoot extends Component {
                 {this.state.signedIn ? (
                   <div>
                     <span>
-                      <FormattedMessage id="sign-in.as" /> {maskEmail(this.state.email)}
+                      <FormattedMessage id="Welcome" /> {generateEmailName(this.state.email)}
                     </span>{" "}
                     <a onClick={this.onLinkClicked(this.signOut)}>
                       <FormattedMessage id="sign-in.out" />
@@ -254,13 +258,14 @@ class HomeRoot extends Component {
                       </video>
                     </div>
                   )}
+                  {/*CM3D*/}
                   <div>
                     <div className={styles.secondaryLink}>
                       <a href="/link">
                         <FormattedMessage id="home.have_code" />
                       </a>
                     </div>
-
+                    {/*CM3D*/}
                     <IfFeature name="show_discord_bot_link">
                       <div className={styles.secondaryLink}>
                         <div>
@@ -393,7 +398,17 @@ class HomeRoot extends Component {
       </button>
     );
   }
-
+  /*Start CM3D*/
+  renderHaveCodeButton() {
+    return (
+      <div className={classNames(styles.secondaryButton, styles.ctaButton, styles.haveCode)}>
+        <a href="/link">
+          <FormattedMessage id="home.have_code" />
+        </a>
+      </div>
+    );
+  }
+  /*Start CM3D*/
   renderFeaturedRoomsHero() {
     return [
       <div className={styles.heroPanel} key={1}>
@@ -404,7 +419,10 @@ class HomeRoot extends Component {
         </div>
         <div className={styles.ctaButtons}>
           {this.props.showCreate && this.renderCreateButton()}
-          {this.renderPwaButton()}
+          {/*CM3D*/}
+          {/*this.renderPwaButton()*/}
+          {this.props.showCreate && this.renderHaveCodeButton()}
+          {/*CM3D*/}
         </div>
       </div>,
       <div className={styles.heroPanel} key={2}>
@@ -434,7 +452,10 @@ class HomeRoot extends Component {
         </div>
         <div className={styles.ctaButtons}>
           {this.props.showCreate && this.renderCreateButton()}
-          {this.renderPwaButton()}
+          {/*CM3D*/}
+          {/*this.renderPwaButton()*/}
+          {this.props.showCreate && this.renderHaveCodeButton()}
+          {/*CM3D*/}
         </div>
       </div>
     );
