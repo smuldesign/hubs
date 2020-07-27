@@ -157,6 +157,7 @@ class ProfileEntryPanel extends Component {
                 pattern={SCHEMA.definitions.profile.properties.displayName.pattern}
                 title={formatMessage({ id: "profile.display_name.validation_warning" })}
                 ref={inp => (this.nameInput = inp)}
+                disabled
               />
             )}
 

@@ -331,9 +331,7 @@ class TopHUD extends Component {
             </div>
             {/*Start cm3d*/}
             <div
-              className={cx(styles.iconButton, {
-                [styles.disabled]: this.state.cameraDisabled
-              })}
+              className={cx(styles.iconButton)}
               title={`Spatial Audio${this.state.onAudioMode ? " Disabled" : ""}`}
               onClick={this.props.onSpatialAudio}
             >
