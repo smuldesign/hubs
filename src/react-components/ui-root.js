@@ -2203,6 +2203,14 @@ class UIRoot extends Component {
                     </i>
                   </button>
                 )}
+                {/*Start CM3D*/}
+
+                {!streaming && (
+                  <div id={"container"} className={styles.ownCameraFeedContainer}>
+                    <video autoPlay={"true"} id={"videoElement"} className={styles.ownCameraFeedElement} />
+                  </div>
+                )}
+                {/*End CM3D*/}
               </div>
             )}
           </div>

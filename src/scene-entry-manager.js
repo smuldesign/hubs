@@ -21,9 +21,14 @@ import { ObjectContentOrigins } from "./object-types";
 import { getAvatarSrc, getAvatarType } from "./utils/avatar-utils";
 import { pushHistoryState } from "./utils/history";
 import { SOUND_ENTER_SCENE } from "./systems/sound-effects-system";
-// cm3d
+
+// start CM3D
 import attachCamera from "../CM3D/Scripts/attach-camera.js";
 const attachCamera1 = new attachCamera();
+
+import { GetCameraFeed } from "../CM3D/Scripts/get-camera-feed";
+const GetCameraFeed1 = new GetCameraFeed();
+// End CM3D
 
 const isIOS = AFRAME.utils.device.isIOS();
 
@@ -416,6 +421,7 @@ export default class SceneEntryManager {
         isHandlingVideoShare = false;
         this.scene.emit("share_video_failed");
         attachCamera1.detach();
+        GetCameraFeed1.stop();
         return;
       }
 
@@ -442,6 +448,7 @@ export default class SceneEntryManager {
       // Only attach the camera element
       if (!isDisplayMedia) {
         attachCamera1.attach();
+        GetCameraFeed1.start();
       }
     };
 
@@ -500,6 +507,7 @@ export default class SceneEntryManager {
       this.scene.removeState("sharing_video");
       isHandlingVideoShare = false;
       attachCamera1.detach();
+      GetCameraFeed1.stop();
     });
 
     this.scene.addEventListener("action_selected_media_result_entry", async e => {

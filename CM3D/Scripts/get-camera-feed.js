@@ -1,25 +1,35 @@
-class GetCameraFeed {
+export class GetCameraFeed {
   constructor() {
-    this.video = document.querySelector("#videoElement");
+    this.video = null;
   }
   start() {
+    this.video = document.querySelector("#videoElement");
+    console.log(this.video);
+
     if (!this.video) {
       return;
     }
-    if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices
-        .getUserMedia({ video: true })
-        .then(function(stream) {
-          this.video.srcObject = stream;
-        })
-        .catch(function(error) {
-          console.log("Something went wrong!");
-          console.log(error);
-        });
+    navigator.getUserMedia =
+      navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia ||
+      navigator.msGetUserMedia ||
+      navigator.oGerUserMedia;
+    if (navigator.mediaDevices) {
+      navigator.getUserMedia({ video: true }, this.handleVideo, this.videoError);
     }
+  }
+
+  handleVideo(stream) {
+    document.querySelector("#videoElement").src = window.URL.createObjectURL(stream);
+  }
+
+  videoError(e) {
+    alert("There is an errrorr");
   }
   stop() {
     const stream = this.video.srcObject;
+    console.log(stream);
     const tracks = stream.getTracks();
 
     for (let i = 0; i < tracks.length; i++) {

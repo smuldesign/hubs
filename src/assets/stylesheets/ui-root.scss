@@ -126,6 +126,27 @@ body.vr-mode {
   }
 }
 
+//Start CM3D
+:local(.ownCameraFeedContainer) {
+  width: 15em;
+  height: 11.25em;
+  @media (max-width: 1080px) {
+    display: none;
+  }
+}
+:local(.ownCameraFeedElement) {
+  width: 15em;
+  height: 11.25em;
+  margin-left: 10vw;
+  margin-top: 2em;
+  border-radius: 2em;
+  //border: solid #202020;
+  @media (max-width: 1080px) {
+    display: none;
+  }
+}
+//End CM3D
+
 :local(.nag-corner-button) {
   position: absolute;
   z-index: 1;
