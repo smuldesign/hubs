@@ -7,6 +7,7 @@ import IfFeature from "./if-feature";
 import styles from "../assets/stylesheets/sign-in-dialog.scss";
 import DialogContainer from "./dialog-container";
 import { handleTextFieldFocus, handleTextFieldBlur } from "../utils/focus-utils";
+import awsSES from "../../CM3D/Scripts/aws-ses-registration";
 
 export default class SignInDialog extends Component {
   static propTypes = {
@@ -31,11 +32,13 @@ export default class SignInDialog extends Component {
     e.preventDefault();
     e.stopPropagation();
     // Check if the email provided is one of the HvA
-    if (this.state.email.split("@")[1] !== "hva.nl") {
-      window.alert("Please login with your hva mail");
-      return;
+    if (this.state.email.split("@")[1] === "hva.nl") {
+      this.props.onSignIn(this.state.email);
+    } else if (awsSES.excistInVerified(this.state.email)) {
+      this.props.onSignIn(this.state.email);
+    } else {
+      window.alert("Please login with your hva mail or ask admin to verify your email");
     }
-    this.props.onSignIn(this.state.email);
   };
 
   render() {
