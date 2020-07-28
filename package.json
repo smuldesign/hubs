@@ -58,6 +58,7 @@
     "ammo-debug-drawer": "github:infinitelee/ammo-debug-drawer",
     "ammo.js": "github:mozillareality/ammo.js#hubs/master",
     "animejs": "github:mozillareality/anime#hubs/master",
+    "aws-sdk": "^2.721.0",
     "buffered-interpolation": "^0.2.5",
     "classnames": "^2.2.5",
     "color": "^3.1.2",
