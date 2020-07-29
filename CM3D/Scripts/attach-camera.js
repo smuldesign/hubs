@@ -26,7 +26,7 @@ class attachCamera {
       NAF.utils.getNetworkedEntity(obj).then(networkedEl => {
         avatar.querySelectorAll("#avatar-head")[0].object3D.getWorldPosition(headEl.position);
         networkedEl.object3D.position.copy(headEl.position);
-        networkedEl.object3D.position.y += 0.05;
+        networkedEl.object3D.position.y += 0.1;
         networkedEl.object3D.setRotationFromQuaternion(
           avatar.querySelectorAll("#avatar-head")[0].object3D.getWorldQuaternion(headElrotation)
         );
@@ -45,7 +45,7 @@ class attachCamera {
         if (mine) {
           myCam = cam;
           this.attachCamInterval = setInterval(attachCam, 35);
-          cam.object3D.scale.setScalar(0.3);
+          cam.object3D.scale.setScalar(0.4);
         }
       });
     }
