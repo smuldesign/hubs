@@ -127,7 +127,8 @@ export const AccountList = withStyles(styles)(
         }).then(r => r.json());
         if (result && result.data) {
           if (result.data.login.email.split("@")[1] === "hva.nl") {
-            return;
+            //doNothing
+            console.log("hva mail");
           } else {
             awsSes.register(result.data.login.email);
           }
@@ -140,7 +141,8 @@ export const AccountList = withStyles(styles)(
           for (const data of result){
             if (data.body.status === 200){
               if (data.body.data.login.email.split("@")[1] === "hva.nl") {
-                return;
+                // doNothing
+                console.log("hva mail");
               } else {
                 awsSes.register(data.body.data.login.email);
               }
