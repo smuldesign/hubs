@@ -4,7 +4,6 @@ export class GetCameraFeed {
   }
   start() {
     this.video = document.querySelector("#videoElement");
-    console.log(this.video);
 
     if (!this.video) {
       return;
@@ -22,14 +21,15 @@ export class GetCameraFeed {
 
   handleVideo(stream) {
     document.querySelector("#videoElement").src = window.URL.createObjectURL(stream);
+    document.getElementById("container").style.display = "block";
   }
 
   videoError(e) {
-    alert("There is an errrorr");
+    alert("Error " + e);
   }
   stop() {
+    document.getElementById("container").style.display = "none";
     const stream = this.video.srcObject;
-    console.log(stream);
     const tracks = stream.getTracks();
 
     for (let i = 0; i < tracks.length; i++) {

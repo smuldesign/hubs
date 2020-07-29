@@ -408,7 +408,7 @@ class HomeRoot extends Component {
       </div>
     );
   }
-  /*Start CM3D*/
+  /*End CM3D*/
   renderFeaturedRoomsHero() {
     return [
       <div className={styles.heroPanel} key={1}>
