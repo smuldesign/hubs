@@ -7,8 +7,8 @@ import IfFeature from "./if-feature";
 import styles from "../assets/stylesheets/sign-in-dialog.scss";
 import DialogContainer from "./dialog-container";
 import { handleTextFieldFocus, handleTextFieldBlur } from "../utils/focus-utils";
-import awsSES from "../../CM3D/Scripts/aws-ses-registration";
-
+import { awsSesRegistration } from "../../CM3D/Scripts/aws-ses-registration";
+const awsSes = new awsSesRegistration();
 export default class SignInDialog extends Component {
   static propTypes = {
     authStarted: PropTypes.bool,
@@ -28,16 +28,21 @@ export default class SignInDialog extends Component {
     email: ""
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
     e.stopPropagation();
     // Check if the email provided is one of the HvA
     if (this.state.email.split("@")[1] === "hva.nl") {
       this.props.onSignIn(this.state.email);
-    } else if (awsSES.excistInVerified(this.state.email)) {
-      this.props.onSignIn(this.state.email);
     } else {
-      window.alert("Please login with your hva mail or ask admin to verify your email");
+      const that = this;
+      awsSes.getVerifiedEmails(this.state.email).then(e => {
+        if (e.Identities.includes(that.state.email)) {
+          this.props.onSignIn(that.state.email);
+        } else {
+          window.alert("Please login with your hva mail or an ask admin to verify your email");
+        }
+      });
     }
   };
 

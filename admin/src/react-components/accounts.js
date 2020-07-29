@@ -124,12 +124,14 @@ export const AccountList = withStyles(styles)(
           })
         }).then(r => r.json());
         if (result && result.data) {
+          console.log(result);
           // one email added successfully
           this.setState({ creating: false, createStatus: `Account created successfully` });
         } else if (result && result.errors) {
           // one email has errors
           this.setState({ creating: false, createStatus: result.errors[0].detail });
         } else if (Array.isArray(result)) {
+          console.log(result);
           // Multiple email accounts created
           // results = {
           //   'successMsg': [email1, ..., email3],
