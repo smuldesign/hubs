@@ -130,6 +130,7 @@ body.vr-mode {
 :local(.ownCameraFeedContainer) {
   width: 15em;
   height: 11.25em;
+  display: none;
 
   @media (max-width: 1080px) {
     display: none;
