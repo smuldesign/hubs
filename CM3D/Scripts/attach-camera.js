@@ -26,7 +26,7 @@ class attachCamera {
       NAF.utils.getNetworkedEntity(obj).then(networkedEl => {
         avatar.querySelectorAll("#avatar-head")[0].object3D.getWorldPosition(headEl.position);
         networkedEl.object3D.position.copy(headEl.position);
-        networkedEl.object3D.position.y += 0d;
+        networkedEl.object3D.position.y += 0;
         networkedEl.object3D.setRotationFromQuaternion(
           avatar.querySelectorAll("#avatar-head")[0].object3D.getWorldQuaternion(headElrotation)
         );
