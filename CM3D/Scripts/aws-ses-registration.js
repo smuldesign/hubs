@@ -1,8 +1,8 @@
 const AWS = require("aws-sdk");
 AWS.config.update({
-  accessKeyId: "AKIA3UMHJLEWCWPSZQ6C",
-  secretAccessKey: "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",
-  region: "us-east-1"
+  accessKeyId: "accessKeyId HERE",
+  secretAccessKey: "secretAccessKey HERE!",
+  region: "region HERE"
 });
 
 export class awsSesRegistration {
