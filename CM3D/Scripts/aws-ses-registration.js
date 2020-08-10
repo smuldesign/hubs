@@ -1,8 +1,10 @@
 const AWS = require("aws-sdk");
+const secrets = require("./secrets.json");
+
 AWS.config.update({
-  accessKeyId: "accessKeyId HERE",
-  secretAccessKey: "secretAccessKey HERE!",
-  region: "region HERE"
+  accessKeyId: secrets.accessKeyId,
+  secretAccessKey: secrets.secretAccessKey,
+  region: secrets.region
 });
 
 export class awsSesRegistration {
