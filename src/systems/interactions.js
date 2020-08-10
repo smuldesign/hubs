@@ -228,7 +228,12 @@ AFRAME.registerSystem("interaction", {
           (isFrozen || !isPinned) &&
           canMove(entity)
         ) {
-          state.held = entity;
+          NAF.utils.getNetworkedEntity(entity).then(networkedEl => {
+            const mine = NAF.utils.isMine(networkedEl);
+            if (mine) {
+              state.held = entity;
+            }
+          });
         }
       }
     }
