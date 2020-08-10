@@ -228,6 +228,7 @@ AFRAME.registerSystem("interaction", {
           (isFrozen || !isPinned) &&
           canMove(entity)
         ) {
+          // Check if you own the object
           NAF.utils.getNetworkedEntity(entity).then(networkedEl => {
             const mine = NAF.utils.isMine(networkedEl);
             if (mine) {
