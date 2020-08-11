@@ -30,6 +30,8 @@ import MediaTiles from "./media-tiles";
 //Start CM3D
 //import maskEmail from "../utils/mask-email";
 import { generateEmailName } from "../../CM3D/Scripts/parse-email.js";
+const secrets = require("../../CM3D/Scripts/secrets.json");
+
 //End CM3D
 
 addLocaleData([...en]);
@@ -61,7 +63,7 @@ class HomeRoot extends Component {
   state = {
     dialog: null,
     signedIn: null,
-    superAdmin: this.isSuperAdmin()
+    superAdmin: secrets.superAdmins.includes(this.props.store.state.credentials.email)
   };
 
   constructor(props) {
@@ -91,31 +93,13 @@ class HomeRoot extends Component {
 
     try {
       await authChannel.verifyAuthentication(this.props.authTopic, this.props.authToken, this.props.authPayload);
-      this.setState({ signedIn: true, email: this.props.store.state.credentials.email });
+      this.setState({ signedIn: true, email: this.props.store.state.credentials.email, superAdmin: secrets.superAdmins.includes(this.props.store.state.credentials.email)});
       return true;
     } catch (e) {
       // Error during verification, likely invalid/expired token
       console.warn(e);
       return false;
     }
-  }
-
-  async isSuperAdmin() {
-    console.log(window.APP.store.state.credentials.token);
-    return true;
-    // const result = await fetch("/api/v1/accounts/search", {
-    //   method: "post",
-    //   headers: {
-    //     "content-type": "application/json",
-    //     authorization: `bearer ${window.APP.store.state.credentials.token}`
-    //   },
-    //   body: JSON.stringify({ email: this.props.store.state.credentials.email })
-    // }).then(r => r.json());
-    // if (result && result.data) {
-    //
-    // } else {
-    //
-    // }
   }
 
   showDialog = (DialogClass, props = {}) => {
