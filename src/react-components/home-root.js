@@ -60,7 +60,8 @@ class HomeRoot extends Component {
 
   state = {
     dialog: null,
-    signedIn: null
+    signedIn: null,
+    superAdmin: this.isSuperAdmin()
   };
 
   constructor(props) {
@@ -97,6 +98,24 @@ class HomeRoot extends Component {
       console.warn(e);
       return false;
     }
+  }
+
+  async isSuperAdmin() {
+    console.log(window.APP.store.state.credentials.token);
+    return true;
+    // const result = await fetch("/api/v1/accounts/search", {
+    //   method: "post",
+    //   headers: {
+    //     "content-type": "application/json",
+    //     authorization: `bearer ${window.APP.store.state.credentials.token}`
+    //   },
+    //   body: JSON.stringify({ email: this.props.store.state.credentials.email })
+    // }).then(r => r.json());
+    // if (result && result.data) {
+    //
+    // } else {
+    //
+    // }
   }
 
   showDialog = (DialogClass, props = {}) => {
@@ -215,15 +234,16 @@ class HomeRoot extends Component {
                       <FormattedMessage id="home.cloud_link" />
                     </a>
                   </IfFeature>
-                  {this.props.showAdmin && (
-                    <a href="/admin" rel="noreferrer noopener">
-                      <i>
-                        <FontAwesomeIcon icon={faCog} />
-                      </i>
-                      &nbsp;
-                      <FormattedMessage id="home.admin" />
-                    </a>
-                  )}
+                  {this.props.showAdmin &&
+                    this.state.superAdmin && (
+                      <a href="/admin" rel="noreferrer noopener">
+                        <i>
+                          <FontAwesomeIcon icon={faCog} />
+                        </i>
+                        &nbsp;
+                        <FormattedMessage id="home.admin" />
+                      </a>
+                    )}
                 </div>
               </div>
               <div className={styles.signIn}>
