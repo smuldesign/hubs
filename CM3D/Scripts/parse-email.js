@@ -3,6 +3,7 @@ const capitalize = s => {
 };
 
 export function generateEmailName(email) {
+  if (!email) return;
   let playerName = email.split("@")[0];
   const playerNameArray = playerName.split(".");
   playerName = "";
