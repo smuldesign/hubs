@@ -264,7 +264,7 @@ class HomeRoot extends Component {
                   )}
                   {/*CM3D*/}
                   <div>
-                    <div className={styles.secondaryLink}>
+                    <div className={styles.primaryLink}>
                       <a href="/link">
                         <FormattedMessage id="home.have_code" />
                       </a>

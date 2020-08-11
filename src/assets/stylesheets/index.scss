@@ -284,6 +284,28 @@ body {
       margin-left: 2px;
     }
   }
+  :local(.primary-link) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--home-header-link-color);
+    margin-top: 8px;
+
+    //CM3D
+    //visibility: hidden;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+    a {
+      color: var(--home-header-link-color);
+      margin-right: 4px;
+      margin-left: 2px;
+    }
+  }
 }
 
 :local(.footer-content) {
