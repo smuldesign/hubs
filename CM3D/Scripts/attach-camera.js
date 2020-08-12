@@ -46,6 +46,7 @@ class attachCamera {
           myCam = cam;
           this.attachCamInterval = setInterval(attachCam, 35);
           cam.object3D.scale.setScalar(0.35);
+          cam.object3D.visible = false;
         }
       });
     }
