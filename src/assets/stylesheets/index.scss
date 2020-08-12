@@ -268,7 +268,8 @@ body {
     align-items: center;
     font-weight: bold;
     color: var(--home-header-link-color);
-    margin-top: 8px;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
 
     //CM3D
     visibility: hidden;
@@ -293,7 +294,7 @@ body {
     margin-top: 8px;
 
     //CM3D
-    //visibility: hidden;
+    visibility: hidden;
 
     img {
       width: 24px;
