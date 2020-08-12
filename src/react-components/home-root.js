@@ -405,7 +405,7 @@ class HomeRoot extends Component {
   /*Start CM3D*/
   renderHaveCodeButton() {
     return (
-      <div className={classNames(styles.secondaryButton, styles.ctaButton, styles.haveCode)}>
+      <div className={classNames(styles.primaryButton, styles.ctaButton, styles.haveCode)}>
         <a href="/link">
           <FormattedMessage id="home.have_code" />
         </a>
