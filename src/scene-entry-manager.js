@@ -420,8 +420,10 @@ export default class SceneEntryManager {
       } catch (e) {
         isHandlingVideoShare = false;
         this.scene.emit("share_video_failed");
+        // start CM3D
         attachCamera1.detach();
         GetCameraFeed1.stop();
+        // end CM3D
         return;
       }
 
@@ -447,8 +449,10 @@ export default class SceneEntryManager {
       isHandlingVideoShare = false;
       // Only attach the camera element
       if (!isDisplayMedia) {
+        // start CM3D
         attachCamera1.attach();
         GetCameraFeed1.start();
+        // end CM3D
       }
     };
 
@@ -506,8 +510,10 @@ export default class SceneEntryManager {
       this.scene.emit("share_video_disabled");
       this.scene.removeState("sharing_video");
       isHandlingVideoShare = false;
+      // start CM3D
       attachCamera1.detach();
       GetCameraFeed1.stop();
+      // end CM3D
     });
 
     this.scene.addEventListener("action_selected_media_result_entry", async e => {
