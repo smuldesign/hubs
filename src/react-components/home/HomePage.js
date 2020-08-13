@@ -75,6 +75,11 @@ export function HomePage() {
         <div className={styles.ctaButtons}>
           {canCreateRooms && <CreateRoomButton />}
           <PWAButton />
+          <div className={styles.haveCode}>
+            <a href="/link">
+              <FormattedMessage id="home.have_code" />
+            </a>
+          </div>
         </div>
       </section>
       {featuredRooms.length > 0 && (
