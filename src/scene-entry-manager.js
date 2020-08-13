@@ -446,14 +446,31 @@ export default class SceneEntryManager {
     };
 
     this.scene.addEventListener("action_share_camera", () => {
-      shareVideoMediaStream({
+      const constraints = {
         video: {
           mediaSource: "camera",
           width: isIOS ? { max: 640 } : { max: 640, ideal: 360 },
           frameRate: 15
         }
         //TODO: Capture audio from camera?
-      });
+      };
+
+      // check preferences
+      const store = window.APP.store;
+      const preferredCamera = store.state.preferences.preferredCamera || "default";
+      switch (preferredCamera) {
+        case "default":
+          constraints.video.mediaSource = "camera";
+          break;
+        case "user":
+        case "environment":
+          constraints.video.facingMode = preferredCamera;
+          break;
+        default:
+          constraints.video.deviceId = preferredCamera;
+          break;
+      }
+      shareVideoMediaStream(constraints);
     });
 
     this.scene.addEventListener("action_share_screen", () => {
@@ -542,7 +559,6 @@ export default class SceneEntryManager {
 
       if (myCamera) {
         myCamera.parentNode.removeChild(myCamera);
-        this.scene.removeState("camera");
       } else {
         const entity = document.createElement("a-entity");
         entity.setAttribute("networked", { template: "#interactable-camera" });
@@ -551,11 +567,7 @@ export default class SceneEntryManager {
           offset: { x: 0, y: 0, z: -1.5 }
         });
         this.scene.appendChild(entity);
-        this.scene.addState("camera");
       }
-
-      // Need to wait a frame so camera is registered with system.
-      setTimeout(() => this.scene.emit("camera_toggled"));
     });
 
     this.scene.addEventListener("photo_taken", e => this.hubChannel.sendMessage({ src: e.detail }, "photo"));
