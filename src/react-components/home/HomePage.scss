@@ -60,6 +60,7 @@
 :local(.featured-rooms) {
   width: 100%;
   background-color: var(--home-media-panel-background-color);
+  border-radius: 1em;
 }
 
 :local(.secondary-links) {
