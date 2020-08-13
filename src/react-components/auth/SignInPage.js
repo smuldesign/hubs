@@ -6,7 +6,7 @@ import configs from "../../utils/configs";
 import IfFeature from "../if-feature";
 import { FormattedMessage } from "react-intl";
 import { AuthContext } from "../auth/AuthContext";
-import {awsSesRegistration} from "../../../CM3D/Scripts/aws-ses-registration";
+import { awsSesRegistration } from "../../../CM3D/Scripts/aws-ses-registration";
 const awsSes = new awsSesRegistration();
 
 const SignInStep = {
@@ -43,24 +43,24 @@ function useSignIn() {
 
   const submitEmail = useCallback(
     email => {
-        // Check if the email provided is one of the HvA
-        if (email.split("@")[1] === "hva.nl") {
+      // Check if the email provided is one of the HvA
+      if (email.split("@")[1] === "hva.nl") {
+        auth.signIn(email).then(() => {
+          dispatch({ type: SignInAction.verificationReceived });
+        });
+        dispatch({ type: SignInAction.submitEmail, email });
+      } else {
+        awsSes.getVerifiedEmails(email).then(e => {
+          if (e.Identities.includes(email)) {
             auth.signIn(email).then(() => {
-                dispatch({ type: SignInAction.verificationReceived });
+              dispatch({ type: SignInAction.verificationReceived });
             });
             dispatch({ type: SignInAction.submitEmail, email });
-        } else {
-            awsSes.getVerifiedEmails(email).then(e => {
-                if (e.Identities.includes(email)) {
-                    auth.signIn(email).then(() => {
-                        dispatch({ type: SignInAction.verificationReceived });
-                    });
-                    dispatch({ type: SignInAction.submitEmail, email });
-                } else {
-                    window.alert("Please login with your hva mail or an ask admin to verify your email");
-xs                }
-            });
-        }
+          } else {
+            window.alert("Please login with your hva mail or an ask admin to verify your email");
+          }
+        });
+      }
     },
     [auth]
   );

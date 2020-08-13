@@ -74,7 +74,7 @@ export function HomePage() {
         </div>
         <div className={styles.ctaButtons}>
           {canCreateRooms && <CreateRoomButton />}
-          <PWAButton />
+          {/*<PWAButton />*/}
           <div className={styles.haveCode}>
             <a href="/link">
               <FormattedMessage id="home.have_code" />
