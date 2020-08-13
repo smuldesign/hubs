@@ -8,9 +8,12 @@ import maskEmail from "../../utils/mask-email";
 import styles from "./Header.scss";
 import { AuthContext } from "../auth/AuthContext";
 
+const secrets = require("../../../CM3D/Scripts/secrets.json");
+import { generateEmailName } from "../../../CM3D/Scripts/parse-email.js";
+
 export function Header() {
   const auth = useContext(AuthContext);
-
+  const isSuperAdmin = secrets.superAdmins.includes(auth.email);
   return (
     <header>
       <nav>
@@ -25,6 +28,7 @@ export function Header() {
               </a>
             </li>
           </IfFeature>
+          {isSuperAdmin && (
           <IfFeature name="enable_spoke">
             <li>
               <a href="/spoke">
@@ -32,6 +36,7 @@ export function Header() {
               </a>
             </li>
           </IfFeature>
+          )}
           <IfFeature name="show_docs_link">
             <li>
               <a href={configs.link("docs", "https://hubs.mozilla.com/docs")}>
@@ -53,7 +58,8 @@ export function Header() {
               </a>
             </li>
           </IfFeature>
-          {auth.isAdmin && (
+          {auth.isAdmin &&
+            isSuperAdmin && (
             <li>
               <a href="/admin" rel="noreferrer noopener">
                 <i>
@@ -70,7 +76,7 @@ export function Header() {
         {auth.isSignedIn ? (
           <div>
             <span>
-              <FormattedMessage id="sign-in.as" /> {maskEmail(auth.email)}
+              <FormattedMessage id="sign-in.as" /> {generateEmailName(auth.email)}
             </span>{" "}
             <a href="#" onClick={auth.signOut}>
               <FormattedMessage id="sign-in.out" />
