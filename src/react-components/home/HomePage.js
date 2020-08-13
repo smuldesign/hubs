@@ -83,21 +83,21 @@ export function HomePage() {
         </section>
       )}
       <section>
-        <div className={styles.secondaryLinks}>
-          <a href="/link">
-            <FormattedMessage id="home.have_code" />
-          </a>
-          <div>
-            <IfFeature name="show_discord_bot_link">
-              <FormattedMessage id="home.add_to_discord_1" />
-              <img src={discordLogoUrl} />
-              <a href="/discord">
-                <FormattedMessage id="home.add_to_discord_2" />
-              </a>
-              <FormattedMessage id="home.add_to_discord_3" />
-            </IfFeature>
-          </div>
-        </div>
+        {/*<div className={styles.secondaryLinks}>*/}
+        {/*  <a href="/link">*/}
+        {/*    <FormattedMessage id="home.have_code" />*/}
+        {/*  </a>*/}
+        {/*  <div>*/}
+        {/*    <IfFeature name="show_discord_bot_link">*/}
+        {/*      <FormattedMessage id="home.add_to_discord_1" />*/}
+        {/*      <img src={discordLogoUrl} />*/}
+        {/*      <a href="/discord">*/}
+        {/*        <FormattedMessage id="home.add_to_discord_2" />*/}
+        {/*      </a>*/}
+        {/*      <FormattedMessage id="home.add_to_discord_3" />*/}
+        {/*    </IfFeature>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </section>
     </Page>
   );

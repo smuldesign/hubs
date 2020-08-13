@@ -20,36 +20,36 @@ export function Footer() {
       </div>
       <nav>
         <ul>
-          <IfFeature name="show_whats_new_link">
-            <li>
-              <a href="/whats-new">
-                <FormattedMessage id="home.whats_new_link" />
-              </a>
-            </li>
-          </IfFeature>
-          <IfFeature name="show_terms">
-            <li>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={configs.link("terms_of_use", "https://github.com/mozilla/hubs/blob/master/TERMS.md")}
-              >
-                <FormattedMessage id="home.terms_of_use" />
-              </a>
-            </li>
-          </IfFeature>
-          <IfFeature name="show_privacy">
-            <li>
-              <a
-                className={styles.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                href={configs.link("privacy_notice", "https://github.com/mozilla/hubs/blob/master/PRIVACY.md")}
-              >
-                <FormattedMessage id="home.privacy_notice" />
-              </a>
-            </li>
-          </IfFeature>
+          {/*<IfFeature name="show_whats_new_link">*/}
+          {/*  <li>*/}
+          {/*    <a href="/whats-new">*/}
+          {/*      <FormattedMessage id="home.whats_new_link" />*/}
+          {/*    </a>*/}
+          {/*  </li>*/}
+          {/*</IfFeature>*/}
+          {/*<IfFeature name="show_terms">*/}
+          {/*  <li>*/}
+          {/*    <a*/}
+          {/*      target="_blank"*/}
+          {/*      rel="noopener noreferrer"*/}
+          {/*      href={configs.link("terms_of_use", "https://github.com/mozilla/hubs/blob/master/TERMS.md")}*/}
+          {/*    >*/}
+          {/*      <FormattedMessage id="home.terms_of_use" />*/}
+          {/*    </a>*/}
+          {/*  </li>*/}
+          {/*</IfFeature>*/}
+          {/*<IfFeature name="show_privacy">*/}
+          {/*  <li>*/}
+          {/*    <a*/}
+          {/*      className={styles.link}*/}
+          {/*      target="_blank"*/}
+          {/*      rel="noopener noreferrer"*/}
+          {/*      href={configs.link("privacy_notice", "https://github.com/mozilla/hubs/blob/master/PRIVACY.md")}*/}
+          {/*    >*/}
+          {/*      <FormattedMessage id="home.privacy_notice" />*/}
+          {/*    </a>*/}
+          {/*  </li>*/}
+          {/*</IfFeature>*/}
           <IfFeature name="show_company_logo">
             <li>
               <img className={styles.companyLogo} src={configs.image("company_logo")} />
