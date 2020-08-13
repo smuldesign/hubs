@@ -204,9 +204,11 @@ class HomeRoot extends Component {
                     </a>
                   </IfFeature>
                   <IfFeature name="enable_spoke">
+                    {this.state.superAdmin && (
                     <a href="/spoke" rel="noreferrer noopener">
                       <FormattedMessage id="editor-name" />
                     </a>
+                    )}
                   </IfFeature>
                   <IfFeature name="show_docs_link">
                     <a href={configs.link("docs", "https://hubs.mozilla.com/docs")} rel="noreferrer noopener">
