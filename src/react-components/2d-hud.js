@@ -294,17 +294,17 @@ class TopHUD extends Component {
             >
               <InlineSVG className={cx(styles.iconButtonIcon)} src={micIcon} />
             </div>
-            <div
-              className={cx(styles.iconButton, {
-                [styles.disabled]: this.state.mediaDisabled
-              })}
-              title={`Create${this.state.mediaDisabled ? " Disabled" : ""}`}
-              onClick={
-                this.state.mediaDisabled ? noop : () => this.props.mediaSearchStore.sourceNavigateToDefaultSource()
-              }
-            >
-              <InlineSVG className={cx(styles.iconButtonIcon, styles.spawn)} src={SpawnIcon} />
-            </div>
+            {/*<div*/}
+            {/*  className={cx(styles.iconButton, {*/}
+            {/*    [styles.disabled]: this.state.mediaDisabled*/}
+            {/*  })}*/}
+            {/*  title={`Create${this.state.mediaDisabled ? " Disabled" : ""}`}*/}
+            {/*  onClick={*/}
+            {/*    this.state.mediaDisabled ? noop : () => this.props.mediaSearchStore.sourceNavigateToDefaultSource()*/}
+            {/*  }*/}
+            {/*>*/}
+            {/*  <InlineSVG className={cx(styles.iconButtonIcon, styles.spawn)} src={SpawnIcon} />*/}
+            {/*</div>*/}
             <div
               className={cx(styles.iconButton, {
                 [styles.disabled]: this.state.penDisabled
@@ -337,7 +337,7 @@ class TopHUD extends Component {
             >
               <InlineSVG
                 className={cx(styles.iconButtonIcon)}
-                src={this.state.onAudioMode ? SpatialIcon : SpatialIconActive}
+                src={this.state.onAudioMode ? SpatialIconActive : SpatialIcon}
               />
             </div>
             {/*End cm3d*/}
