@@ -187,29 +187,29 @@ export default class AvatarEditor extends Component {
         <div className="img-box" />
         <span>{label}</span>
       </label>
-      {/*<input*/}
-      {/*  id={`avatar-file_${name}`}*/}
-      {/*  type="file"*/}
-      {/*  accept={accept}*/}
-      {/*  disabled={disabled}*/}
-      {/*  onChange={e => {*/}
-      {/*    const file = e.target.files[0];*/}
-      {/*    e.target.value = null;*/}
-      {/*    this.inputFiles[name] = file;*/}
-      {/*    URL.revokeObjectURL(this.state.previewGltfUrl);*/}
-      {/*    const previewGltfUrl = URL.createObjectURL(this.inputFiles.glb);*/}
-      {/*    this.setState({*/}
-      {/*      previewGltfUrl,*/}
-      {/*      avatar: {*/}
-      {/*        ...this.state.avatar,*/}
-      {/*        files: {*/}
-      {/*          ...this.state.avatar.files,*/}
-      {/*          [name]: URL.createObjectURL(file)*/}
-      {/*        }*/}
-      {/*      }*/}
-      {/*    });*/}
-      {/*  }}*/}
-      {/*/>*/}
+      <input
+        id={`avatar-file_${name}`}
+        type="file"
+        accept={accept}
+        disabled={disabled}
+        onChange={e => {
+          const file = e.target.files[0];
+          e.target.value = null;
+          this.inputFiles[name] = file;
+          URL.revokeObjectURL(this.state.previewGltfUrl);
+          const previewGltfUrl = URL.createObjectURL(this.inputFiles.glb);
+          this.setState({
+            previewGltfUrl,
+            avatar: {
+              ...this.state.avatar,
+              files: {
+                ...this.state.avatar.files,
+                [name]: URL.createObjectURL(file)
+              }
+            }
+          });
+        }}
+      />
       {this.state.avatar.files[name] && (
         <a
           onClick={() => {
