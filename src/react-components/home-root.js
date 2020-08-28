@@ -411,6 +411,9 @@ class HomeRoot extends Component {
           <div className={classNames([styles.logo, styles.logoMargin])}>
             <img src={configs.image("logo")} />
           </div>
+          <div className={styles.blurb}>
+            <FormattedMessage id="app-description" />
+          </div>
         </div>
         <div className={styles.ctaButtons}>
           {this.props.showCreate && this.renderCreateButton()}
