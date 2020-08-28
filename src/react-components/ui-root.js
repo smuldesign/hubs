@@ -84,6 +84,8 @@ import qsTruthy from "../utils/qs_truthy";
 import { CAMERA_MODE_INSPECT } from "../systems/camera-system";
 const avatarEditorDebug = qsTruthy("avatarEditorDebug");
 
+const secrets = require("../../CM3D/Scripts/secrets.json");
+
 addLocaleData([...en]);
 
 // This is a list of regexes that match the microphone labels of HMDs.
@@ -219,7 +221,8 @@ class UIRoot extends Component {
     objectSrc: "",
     isObjectListExpanded: false,
     isPresenceListExpanded: false
-  };
+
+};
 
   constructor(props) {
     super(props);
@@ -2069,7 +2072,7 @@ class UIRoot extends Component {
             )}
             {streamingTip}
 
-            {showObjectList && (
+            {showObjectList && secrets.superAdmins.includes(this.props.store.state.credentials.email) &&(
               <ObjectList
                 scene={this.props.scene}
                 onExpand={(expand, uninspect) => {
