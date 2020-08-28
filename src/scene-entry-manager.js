@@ -89,7 +89,6 @@ export default class SceneEntryManager {
     this._setupKicking();
     this._setupMedia(mediaStream);
     this._setupCamera();
-    this._setupSpatialAudio();
 
     if (qsTruthy("offline")) return;
 
@@ -538,17 +537,6 @@ export default class SceneEntryManager {
       exit2DInterstitialAndEnterVR();
     });
   };
-  // Start cm3d
-  // Toggle spatialAudio on or off
-  _setupSpatialAudio = () => {
-    this.scene.addEventListener("action_toggle_spatialAudio", () => {
-      const shouldEnablePositionalAudio = window.APP.store.state.preferences.audioOutputMode === "audio";
-      window.APP.store.update({
-        preferences: { audioOutputMode: shouldEnablePositionalAudio ? "panner" : "audio" }
-      });
-    });
-  };
-  // End cm3d
   _setupCamera = () => {
     this.scene.addEventListener("action_toggle_camera", () => {
       if (!this.hubChannel.can("spawn_camera")) return;
