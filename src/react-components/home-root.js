@@ -266,7 +266,7 @@ class HomeRoot extends Component {
                   )}
                   {/*CM3D*/}
                   <div>
-                    <div className={styles.primaryLink}>
+                    <div className={classNames(styles.secondaryButton, styles.ctaButton, styles.haveCode)}>
                       <a href="/link">
                         <FormattedMessage id="home.have_code" />
                       </a>
@@ -404,17 +404,6 @@ class HomeRoot extends Component {
       </button>
     );
   }
-  /*Start CM3D*/
-  renderHaveCodeButton() {
-    return (
-      <div className={classNames(styles.secondaryButton, styles.ctaButton, styles.haveCode)}>
-        <a href="/link">
-          <FormattedMessage id="home.have_code" />
-        </a>
-      </div>
-    );
-  }
-  /*End CM3D*/
   renderFeaturedRoomsHero() {
     return [
       <div className={styles.heroPanel} key={1}>
@@ -427,7 +416,6 @@ class HomeRoot extends Component {
           {this.props.showCreate && this.renderCreateButton()}
           {/*CM3D*/}
           {/*this.renderPwaButton()*/}
-          {this.renderHaveCodeButton()}
           {/*CM3D*/}
         </div>
       </div>,
@@ -460,7 +448,6 @@ class HomeRoot extends Component {
           {this.props.showCreate && this.renderCreateButton()}
           {/*CM3D*/}
           {/*this.renderPwaButton()*/}
-          {this.renderHaveCodeButton()}
           {/*CM3D*/}
         </div>
       </div>
