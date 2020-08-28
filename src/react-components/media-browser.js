@@ -379,14 +379,14 @@ class MediaBrowser extends Component {
             </div>
             <div className={styles.headerRight}>
               {showCustomOption && (
-                <a onClick={() => handleCustomClicked(urlSource)} className={styles.createButton}>
+                <a onClick={() => handleCustomClicked(urlSource)} className={styles.hidden}>
                   <i>
                     <FontAwesomeIcon icon={["scenes", "avatars"].includes(urlSource) ? faLink : faCloudUploadAlt} />
                   </i>
                 </a>
               )}
               {showCustomOption && (
-                <a onClick={() => handleCustomClicked(urlSource)} className={styles.createLink}>
+                <a onClick={() => handleCustomClicked(urlSource)} className={styles.hidden}>
                   <FormattedMessage
                     id={`media-browser.add_custom_${
                       this.state.result && isSceneApiType ? "scene" : urlSource === "avatars" ? "avatar" : "object"

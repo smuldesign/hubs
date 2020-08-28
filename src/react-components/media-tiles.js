@@ -98,7 +98,7 @@ class MediaTiles extends Component {
                   }}
                   className={styles.tileLink}
                 >
-                  <div className={styles.tileContent}>
+                  <div className={styles.displaynone}>
                     <FontAwesomeIcon icon={faPlus} />
                     <FormattedMessage id="media-browser.create-avatar" />
                   </div>

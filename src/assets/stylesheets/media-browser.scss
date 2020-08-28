@@ -573,3 +573,9 @@
   border-radius: 1em;
   //margin-bottom: 52px;
 }
+:local(.hidden) {
+  visibility: hidden;
+}
+:local(.displaynone) {
+  display: none;
+}
