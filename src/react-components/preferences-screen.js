@@ -577,8 +577,8 @@ const DEFINITIONS = new Map([
       {
         key: "materialQualitySetting",
         prefType: PREFERENCE_LIST_ITEM_TYPE.SELECT,
-        options: [{ value: "low", text: "Lowv2" }, { value: "low", text: "Low" }],
-        defaultString: isMobile ? "low" : "low",
+        options: [{ value: "low", text: "Low" }, { value: "high", text: "High" }],
+        defaultString: isMobile ? "low" : "high",
         promptForRefresh: true
       },
       { key: "disableAutoPixelRatio", prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX, defaultBool: false },

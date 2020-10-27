@@ -6,11 +6,16 @@ export function generateEmailName(email) {
   if (!email) return;
   let playerName = email.split("@")[0];
   const playerNameArray = playerName.split(".");
-  playerName = "";
-  playerNameArray.forEach(e => {
-    if (typeof e !== "string") return "";
-    playerName += capitalize(e);
-    playerName += " ";
-  });
-  return playerName;
+  if(playerNameArray[0].length === 1){
+    playerName = "";
+    playerNameArray.forEach(e => {
+      if (typeof e !== "string") return "";
+      playerName += capitalize(e);
+      playerName += " ";
+    });
+    return playerName;
+  }
+  else{
+    return playerNameArray[0];
+  }
 }
