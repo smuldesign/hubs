@@ -50,7 +50,7 @@ export default class MessageDispatch {
     const captureSystem = this.scene.systems["capture-system"];
 
     switch (command) {
-      case "fly":
+      /*case "fly":
         if (this.scene.systems["hubs-systems"].characterController.fly) {
           this.scene.systems["hubs-systems"].characterController.enableFly(false);
           this.addToPresenceLog({ type: "log", body: "Fly mode disabled." });
@@ -79,19 +79,19 @@ export default class MessageDispatch {
           }
         }
 
-        break;
+        break;*/
       case "leave":
         this.entryManager.exitScene();
         this.remountUI({ roomUnavailableReason: "left" });
         break;
-      case "duck":
-        spawnChatMessage(getAbsoluteHref(location.href, ducky));
-        if (Math.random() < 0.01) {
-          this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_SPECIAL_QUACK);
-        } else {
-          this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_QUACK);
-        }
-        break;
+      // case "duck":
+      //   spawnChatMessage(getAbsoluteHref(location.href, ducky));
+      //   if (Math.random() < 0.01) {
+      //     this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_SPECIAL_QUACK);
+      //   } else {
+      //     this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_QUACK);
+      //   }
+      //   break;
       case "debug":
         physicsSystem = document.querySelector("a-scene").systems["hubs-systems"].physicsSystem;
         physicsSystem.setDebug(!physicsSystem.debugEnabled);
@@ -141,15 +141,15 @@ export default class MessageDispatch {
           }
         }
         break;
-      case "audiomode":
-        {
-          const shouldEnablePositionalAudio = window.APP.store.state.preferences.audioOutputMode === "audio";
-          window.APP.store.update({
-            preferences: { audioOutputMode: shouldEnablePositionalAudio ? "panner" : "audio" }
-          });
-          this.log(`Positional Audio ${shouldEnablePositionalAudio ? "enabled" : "disabled"}.`);
-        }
-        break;
+      // case "audiomode":
+      //   {
+      //     const shouldEnablePositionalAudio = window.APP.store.state.preferences.audioOutputMode === "audio";
+      //     window.APP.store.update({
+      //       preferences: { audioOutputMode: shouldEnablePositionalAudio ? "panner" : "audio" }
+      //     });
+      //     this.log(`Positional Audio ${shouldEnablePositionalAudio ? "enabled" : "disabled"}.`);
+      //   }
+      //   break;
     }
   };
 }
